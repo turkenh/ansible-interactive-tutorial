@@ -1,4 +1,4 @@
-lesson_name("Introduction to ansible")
+lesson_name("Groups and variables")
 
 "Hello, welcome to the Ansible Playground!"
 

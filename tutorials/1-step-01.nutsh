@@ -1,0 +1,45 @@
+lesson_name("Basic inventory")
+make_and_go_ws
+
+"`INVENTORY`"
+
+"Before continuing, you need an inventory file. The default place for such a file is `/etc/ansible/hosts`."
+"However, you can configure ansible to look somewhere else, use an environment variable (`ANSIBLE_HOSTS`), or use the `-i` flag in ansible commands an provide the inventory path."
+
+enter_to_continue
+
+run(`cp /tutorials/files/step-01/hosts hosts`)
+
+"We've created an inventory file for you in the workspace named `hosts`"
+
+"Please run *cat hosts* to see the content of your first inventory file"
+
+prompt {
+    if success && command =~ "^cat hosts" {
+        "`ansible_host` is a special `variable` that sets the IP ansible will use when trying to connect to this host."
+
+        "`ansible_user` is another special `variable` that tells ansible to connect as this user when using ssh. By default ansible would use your current username, or use another default provided in ~/.ansible.cfg (`remote_user`)."
+        break
+    }
+}
+
+enter_to_continue
+
+"`TESTING`"
+
+"Now that ansible is installed, let's check everything works properly."
+
+"What ansible will try to do here is just executing the ping module (more on modules later) on each host."
+
+"Please run *ansible -m ping all -i hosts*"
+
+prompt {
+    if success && command =~ `^ansible -m ping all -i hosts` {
+        "Good! All 3 hosts are alive and kicking, and ansible can talk to them."
+        break
+    }
+}
+
+"This is the end of this lesson!"
+
+enter_to_continue

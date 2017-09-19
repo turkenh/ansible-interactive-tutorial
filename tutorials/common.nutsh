@@ -6,29 +6,10 @@ def success {
     return(exit_code == "0")
 }
 
-def go_home {
-    run(`ROOT="$HOME"/ansible_tutorial`)
-    run(`mkdir -p "$ROOT"`)
-    run(`cd "$ROOT"`)
-    if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
-        run(`ROOT="$HOME"/ansible_tutorial`)
-        run(`mkdir -p "$ROOT"`)
-        run(`cd "$ROOT"`)
-        if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
-            run(`ROOT="$HOME"/ansible_tutorial`)
-            run(`mkdir -p "$ROOT"`)
-            run(`cd "$ROOT"`)
-            if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
-                did_not_go_home_error // better crash now
-            }
-        }
-    }
-}
-
-def make_home {
-    go_home
-    run(`echo "[mylocal]" > hosts`)
-    run(`echo "localhost ansible_connection=local" >> hosts`)
+def make_and_go_ws {
+    run(`WS="/root/workspace"`)
+    run(`mkdir -p "$WS"`)
+    run(`cd "$WS"`)
 }
 
 def enter_to_continue {
