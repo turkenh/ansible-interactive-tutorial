@@ -1,0 +1,97 @@
+def exit_code {
+    return(run("echo $?"))
+}
+
+def success {
+    return(exit_code == "0")
+}
+
+def go_home {
+    run(`ROOT="$HOME"/ansible_tutorial`)
+    run(`mkdir -p "$ROOT"`)
+    run(`cd "$ROOT"`)
+    if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
+        run(`ROOT="$HOME"/ansible_tutorial`)
+        run(`mkdir -p "$ROOT"`)
+        run(`cd "$ROOT"`)
+        if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
+            run(`ROOT="$HOME"/ansible_tutorial`)
+            run(`mkdir -p "$ROOT"`)
+            run(`cd "$ROOT"`)
+            if ! run("pwd") == run(`echo "$HOME"/ansible_tutorial`) {
+                did_not_go_home_error // better crash now
+            }
+        }
+    }
+}
+
+def make_home {
+    go_home
+    run(`echo "[mylocal]" > hosts`)
+    run(`echo "localhost ansible_connection=local" >> hosts`)
+}
+
+def enter_to_continue {
+    "Please press the \"`Enter`\" key to continue!"
+    prompt {
+        expect(" ")
+        break
+    }
+}
+
+def common_mistakes {
+    if command == "1s" {
+        "Das ist ein kleines L, keine Eins! Probieren Sie's nochmal!"
+    }
+    if command == ".." {
+        "`..` ist der Name des Verzeichnisses, Sie müssen noch dazusagen, was
+        Sie damit machen möchten. Um \"hinzugehen\", schreiben Sie `cd` davor."
+    }
+    if command == "cd.." {
+        "Da fehlt noch ein Leerzeichen zwischen `cd` und `..`!"
+    }
+}
+
+def stayin(d) {
+    if !(run("pwd") =~ run(`echo "`+d+`"`)) {
+        run(`cd "`+d+`"`)
+        "Bleiben Sie bitte erstmal in diesem Ordner."
+    }
+}
+
+def stayinroot {
+    stayin("$ROOT")
+}
+
+def runs(cmd) {
+    run(cmd)
+    return(exit_code == "0")
+}
+
+def test(condition) {
+    return(runs("[[ "+condition+" ]]"))
+}
+
+def dir(d) {
+    return(test("-d \""+d+"\""))
+}
+
+def file(f) {
+    return(test("-f \""+f+"\""))
+}
+
+def help {
+    return(command =~ `echo\s+(help|hilfe)`)
+}
+
+def ready {
+    return(command =~ `echo\s+(fertig|ready)`)
+}
+
+def in(d) {
+    return(run("pwd") == run(`echo "` + d + `"`))
+}
+
+def user {
+    return(run("whoami"))
+}
