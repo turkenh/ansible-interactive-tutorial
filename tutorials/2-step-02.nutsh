@@ -76,7 +76,7 @@ enter_to_continue
 
 "`Many more facts`"
 
-"That was easy. However, It would quickly become cumbersome if we wanted more information (ip addresses, RAM size, etc...). The solution comes from another really handy module (weirdly) called `setup`: it specializes in node's facts gathering."
+"That was easy. However, It would quickly become cumbersome if we wanted more information (ip addresses, RAM size, etc...). The solution comes from another really handy module (weirdly) called `setup`: it specializes in node's `facts` gathering."
 
 "Try it out:"
 
@@ -97,7 +97,7 @@ prompt {
 
 prompt {
     if success && command == "ansible -i hosts -m setup -a 'filter=ansible_memtotal_mb' all" {
-        "Notice that hosts replied in different order compared to the previous output. This is because ansible parallelizes communications with hosts!"
+        "Notice that hosts may reply in different order compared to the previous output. This is because ansible parallelizes communications with hosts!"
         break
     }
 }
