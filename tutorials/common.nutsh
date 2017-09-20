@@ -15,8 +15,9 @@ def make_and_go_ws {
 def enter_to_continue {
     "Please press the \"`Enter`\" key to continue!"
     prompt {
-        expect(" ")
-        break
+        if command == "" {
+            break
+        }
     }
 }
 

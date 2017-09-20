@@ -8,7 +8,7 @@ make_and_go_ws
 
 enter_to_continue
 
-run(`cp /tutorials/files/step-01/hosts hosts`)
+run(`rm -rf hosts && cp /tutorials/files/step-1-2/hosts hosts`)
 
 "We've created an inventory file for you in the workspace named `hosts`"
 

@@ -52,8 +52,8 @@ function remove () {
 } 
 
 function setupFiles() {
-    # step-01
-    local step_01_hosts_file="${BASEDIR}/tutorials/files/step-01/hosts"
+    # step-01/02
+    local step_01_hosts_file="${BASEDIR}/tutorials/files/step-1-2/hosts"
     rm -f "${step_01_hosts_file}"
     for ((i = 0; i < $NOF_HOSTS; i++)); do
         #ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' host$i.example.org)
