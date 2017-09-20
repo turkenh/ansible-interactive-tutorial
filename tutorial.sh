@@ -10,6 +10,7 @@ TUTORIALS_FOLDER="${BASEDIR}/tutorials"
 function help() {
     echo -ne "-h, --help              prints this help message
 -r, --remove            remove created containers and network 
+-t, --test              run lesson tests
 "
 }
 function doesNetworkExist() {
@@ -39,8 +40,14 @@ function runTutorialContainer() {
     local mode_flag=$1
     local name=$2
     local image=$3
+    local entrypoint=""
+    local args=""
+    if [ -n "${TEST}" ]; then
+        entrypoint="--entrypoint nutsh"
+        args="test /tutorials"  
+    fi
     echo "starting container ${name}"
-    docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} --name="${name}" "${image}"
+    docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} ${entrypoint} --name="${name}" "${image}" ${args}
 }
 
 function remove () {
@@ -73,10 +80,15 @@ function init () {
 
 ###
 MODE="init"
+TEST=""
 for i in "$@"; do
 case $i in
     -r|--remove)
     MODE="remove"
+    shift # past argument=value
+    ;;
+    -t|--test)
+    TEST="yes"
     shift # past argument=value
     ;;
     -h|--help)

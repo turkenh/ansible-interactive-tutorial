@@ -1,147 +1,41 @@
 lesson_name("Groups and variables")
+make_and_go_ws
 
-"Hello, welcome to the Ansible Playground!"
+"`Grouping hosts`"
 
-"This is an introductory tutorial to make you familiar with `ansible`."
+"Hosts in inventory can be grouped arbitrarily. For instance, you could have a `debian` group, a `web-servers` group, a `production` group, etc..."
 
-"Please keep in mind that you can always quit by running `exit`."
+"[debian]
+host0.example.org
+host1.example.org
+host2.example.org"
 
-"Please press the \"`Enter`\" key, when you are ready!"
+"This can even be expressed shorter:"
 
-prompt {
-    expect(" ")
-    break
-}
+"[debian]
+host[0:2].example.org"
 
-"Let's start with a version check. This will also verify that `ansible` is already installed."
 
-"Please run *ansible --version*"
 
-prompt {
-    if success && command =~ "^ansible --version" {
-        expect("ansible --version")
-        "Great, ansible is already installed and we are ready to start!"
-        break
-    }
-}
-make_home
 
-"Let's start with the inventory."
 
-"Ansible uses `inventory files` to access multiple nodes in your infrastructure at the same time. Inventory file is nothing but a text file with the connection info to your nodes. Default path for inventory files is `/etc/ansible/hosts` but you can always specify an inventory file with `-i` flag."
-"I've just created an inventory file for you, named as `hosts`. Please run *cat hosts* to see the content of your first inventory file"
+
+
+
+
+
+
+"Please run *ansible -i hosts -m shell -a 'uname -a' host0.example.org*"
 
 prompt {
-    if success && command =~ "^cat hosts" {
-        "Here you can see an inventory group named `mylocal` and a host as `localhost` with connection type of `local`. Default connection type in ansible is `ssh` and we have one more type, namely `docker`. Here we used `local` since we start by running ansible tasks on the local machine by using a `local` connection."
-        break
-    }
-}
-
-enter_to_continue
-
-"Ansible has two different types of commands, namely ad hoc and playbooks."
-
-"You can think ad hoc tasks as building pieces of playbooks. In other words, in a `playbook` definition (.yaml file), you specify your tasks consecutively, on the other hand you run a single task per `ad hoc` command."
-
-"Let's start with an ad hoc command which will check the ansible connection to the localhost machine."
-
-"Please run *ansible -i hosts -m ping mylocal*"
-
-prompt {
-    if success && command =~ `^ansible -i hosts -m ping mylocal` {
-        "Perfect, we just run our first ansible task and succesfully tested ansible connection on the local machine. We provided the previously created inventory file with `-i` flag and specified the group to run command as `mylocal`."
+    if success && command == "ansible -i hosts -m shell -a 'uname -a' host0.example.org" {
+        "Easy!"
+        "Next one is the `copy module`"
         break
     }
 }
 
 enter_to_continue
-
-"In an ad hoc task, you basically specify the `module` (ping, shell, apk, ...) you want to use with `-m` and the `arguments` with `-a` to that module. In the previous command we used `ping` module which does not require any arguments."
-
-"Let's try the `shell` module."
-"Please run: *ansible -i hosts -m shell -a \"hostname -s\" mylocal* "
-
-prompt {
-    if success && command =~ `^ansible -i hosts -m shell -a "hostname -s" mylocal` {
-        "Cool, we have just executed a shell command on the local machine with ansible. You can see the output of the command in the ansible output above."
-        break
-    }
-}
-
-enter_to_continue 
-
-"Let's continue by adding a `remote` node into our inventory. But first we need a `remote node` :)"
-
-"Click `+ ADD NEW INSTANCE` button on the left. When the new node is ready, run the following to continue!"
-
-"*ping -c 3 host0.example.org*"
-
-prompt {
-    if success && command =~ `^ping -c 3 host0.example.org` {
-        "Perfect, we now have a new node. Let's add it into our inventory."
-        break
-    }
-}
-
-"To add the new node into our inventory file, please run: "
-
-"*echo -en '\\n[nodes]\\nhost0.example.org\\n' >> hosts*"
-
-prompt {
-    if success && command == `echo -en '\n[nodes]\nhost0.example.org\n' >> hosts` {
-        "Ok, now inspect the final version of our inventory by running *cat hosts*"
-        break
-    }
-}
-
-prompt {
-    if success && command == `cat hosts` {
-        "Now, we have a new inventory group named `nodes` and we are ready to execute ansible tasks on our remote node."
-        "We could create one more node and append it under \"`host0.example.org`\" line in `nodes` inventory group. This way we could run ansible tasks on both nodes by using `nodes` inventory group. But this is not in the scope of this introductory tutorial!"
-        break
-    }
-}
-
-enter_to_continue
-
-"First check the ansible connectivity to the remote node."
-
-"Please run: *ansible -i hosts -m ping nodes*"
-
-prompt {
-    if success && command == `ansible -i hosts -m ping nodes` {
-        "Great, we could execute our first remote ansible task. As you can see, it is not that different than running for the local machine."
-        break
-    }
-}
-
-enter_to_continue
-
-"Our last task will be installing a package to the remote node with `package` module."
-
-"Please run: *ansible -i hosts -m apk -a \"name=wget state=present update_cache=yes\" nodes*"
-
-prompt {
-    if success && command == `ansible -i hosts -m apk -a "name=wget state=present update_cache=yes" nodes` {
-        "Perfect, we just installed a package on the remote node with `apk` module. You can always consult to the official ansible documentation for any module. Here it is for `apk` module: http://docs.ansible.com/ansible/latest/apk_module.html"
-        break
-    }
-}
-
-"Did you notice `changed:` field in the output of previous command?" 
-
-enter_to_continue
-
-"Now, rerun the same command: *ansible -i hosts -m apk -a \"name=wget state=present update_cache=yes\" nodes*"
-
-prompt {
-    if success && command == `ansible -i hosts -m apk -a "name=wget state=present update_cache=yes" nodes` {
-        "As you can see, changed field is `false` now, meaning nothing changed on the node."
-        "Most of the ansible modules are `idempotent` and you can rerun the same task without any failure. Ansible simply checks whether the system is in the desired state or not and makes necessery changes if required."
-        break
-    }
-}
 
 "This is the end of the tutorial!"
 

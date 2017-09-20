@@ -8,7 +8,13 @@ run(`rm -rf hosts && cp /tutorials/files/step-1-2/hosts hosts`)
 
 "Let's play with the command we saw in the previous chapter: `ansible`. This command is the first one of three that ansible provides which interact with nodes."
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Doing something useful`"
 
@@ -16,7 +22,13 @@ enter_to_continue
 
 "`ping module` is really simple, it doesn't need any arguments. Modules that take arguments pass them via `-a` switch. Let's see a few other modules."
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Shell module`"
 
@@ -26,13 +38,20 @@ enter_to_continue
 
 prompt {
     if success && command == "ansible -i hosts -m shell -a 'uname -a' host0.example.org" {
+    	expect ("ansible -i hosts -m shell -a 'uname -a' host0.example.org")
         "Easy!"
         "Next one is the `copy module`"
         break
     }
 }
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Copy module`"
 
@@ -42,6 +61,7 @@ enter_to_continue
 
 prompt {
     if success && command == "ansible -i hosts -m copy -a 'src=/etc/motd dest=/tmp/' host0.example.org" {
+    	expect ("ansible -i hosts -m copy -a 'src=/etc/motd dest=/tmp/' host0.example.org")
         "Please check the output above."
         break
     }
@@ -55,7 +75,13 @@ prompt {
 
 "If you can't find the right module, writing one is pretty easy (it doesn't even have to be Python, it just needs to speak JSON)."
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Many hosts, same command`"
 
@@ -67,12 +93,19 @@ enter_to_continue
 
 prompt {
     if success && command == "ansible -i hosts -m shell -a 'grep DISTRIB_RELEASE /etc/lsb-release' all" {
+    	expect ("ansible -i hosts -m shell -a 'grep DISTRIB_RELEASE /etc/lsb-release' all")
         "`all` is a shortcut meaning `all hosts found in inventory file`"
         break
     }
 }
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Many more facts`"
 
@@ -84,6 +117,7 @@ enter_to_continue
 
 prompt {
     if success && command == "ansible -i hosts -m setup host0.example.org" {
+    	expect ("ansible -i hosts -m setup host0.example.org")
         "Replied with lots of information"
         break
     }
@@ -97,6 +131,7 @@ prompt {
 
 prompt {
     if success && command == "ansible -i hosts -m setup -a 'filter=ansible_memtotal_mb' all" {
+    	expect ("ansible -i hosts -m setup -a 'filter=ansible_memtotal_mb' all")
         "Notice that hosts may reply in different order compared to the previous output. This is because ansible parallelizes communications with hosts!"
         break
     }
@@ -104,7 +139,13 @@ prompt {
 
 "BTW, when using the setup module, you can use `*` in the `filter=` expression. It will act like a shell glob"
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
 
 "`Selecting hosts`"
 
@@ -118,4 +159,10 @@ enter_to_continue
 
 "This is the end of this lesson!"
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect ("")
+        break
+    }
+}
