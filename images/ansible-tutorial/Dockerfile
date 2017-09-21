@@ -1,6 +1,6 @@
 FROM turkenh/nutsh
 
-RUN apk add --no-cache ansible
+RUN apk add --no-cache ansible openssh
 
 COPY tutorials /tutorials
 

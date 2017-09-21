@@ -77,3 +77,4 @@ def in(d) {
 def user {
     return(run("whoami"))
 }
+

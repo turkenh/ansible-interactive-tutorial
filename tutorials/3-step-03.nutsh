@@ -5,40 +5,34 @@ make_and_go_ws
 
 "Hosts in inventory can be grouped arbitrarily. For instance, you could have a `debian` group, a `web-servers` group, a `production` group, etc..."
 
-"[debian]
-host0.example.org
-host1.example.org
-host2.example.org"
+exec ("cat /tutorials/files/step-3/text-1")
 
 "This can even be expressed shorter:"
 
-"[debian]
-host[0:2].example.org"
+exec ("cat /tutorials/files/step-3/text-2")
 
+"If you wish to use child groups, just define a `[groupname:children]` and add child groups in it. For instance, let's say we have various flavors of linux running, we could organize our inventory like this:"
 
+exec ("cat /tutorials/files/step-3/text-3")
 
+"Grouping of course, leverages configuration mutualization."
 
-
-
-
-
-
-
-
-"Please run *ansible -i hosts -m shell -a 'uname -a' host0.example.org*"
-
+"Please press the \"`Enter`\" key to continue!"
 prompt {
-    if success && command == "ansible -i hosts -m shell -a 'uname -a' host0.example.org" {
-        "Easy!"
-        "Next one is the `copy module`"
+    if command == "" {
+        expect (" ")
         break
     }
 }
-
-enter_to_continue
 
 "This is the end of the tutorial!"
 
 "Now you can continue playing with ansible in the online ansible playground."
 
-enter_to_continue
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}

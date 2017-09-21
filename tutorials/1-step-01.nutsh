@@ -9,7 +9,7 @@ make_and_go_ws
 "Please press the \"`Enter`\" key to continue!"
 prompt {
     if command == "" {
-        expect("")
+        expect(" ")
         break
     }
 }
@@ -33,7 +33,7 @@ prompt {
 "Please press the \"`Enter`\" key to continue!"
 prompt {
     if command == "" {
-        expect ("")
+        expect (" ")
         break
     }
 }
@@ -59,7 +59,7 @@ prompt {
 "Please press the \"`Enter`\" key to continue!"
 prompt {
     if command == "" {
-        expect ("")
+        expect (" ")
         break
     }
 }
