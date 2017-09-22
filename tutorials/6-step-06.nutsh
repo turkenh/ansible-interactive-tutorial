@@ -1,6 +1,6 @@
 lesson_name("Playbooks and failures")
 make_and_go_ws
-run(`cp /tutorials/files/step-5/hosts hosts`)
+run(`cp /tutorials/files/step-6/hosts hosts`)
 
 "`Restarting when config is correct`"
 
