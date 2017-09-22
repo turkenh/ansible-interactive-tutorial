@@ -21,8 +21,8 @@ run(`rm -rf hosts && cp /tutorials/files/step-1-2/hosts hosts`)
 "Please run *cat hosts* to see the content of your first inventory file"
 
 prompt {
-    expect ("cat hosts")
     if success && command =~ "^cat hosts" {
+        expect ("cat hosts")
         "`ansible_host` is a special `variable` that sets the IP ansible will use when trying to connect to this host."
 
         "`ansible_user` is another special `variable` that tells ansible to connect as this user when using ssh. By default ansible would use your current username, or use another default provided in ~/.ansible.cfg (`remote_user`)."

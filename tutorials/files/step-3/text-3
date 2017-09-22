@@ -1,9 +1,0 @@
-[ubuntu]
-host0.example.org
-
-[debian]
-host[1:2].example.org
-
-[linux:children]
-ubuntu
-debian
