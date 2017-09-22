@@ -75,7 +75,7 @@ print("\t
 
 "Now that we know the basics of modules, inventories and variables, let's explore the real power of Ansible with playbooks."
 
-"This is the end of the tutorial!"
+"This is the end of this lesson!"
 
 "Please press the \"`Enter`\" key to continue!"
 prompt {

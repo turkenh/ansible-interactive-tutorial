@@ -1,0 +1,68 @@
+lesson_name("Playbooks, pushing files on nodes")
+make_and_go_ws
+run(`rm -rf hosts && cp /tutorials/files/step-5/hosts hosts`)
+
+"`Refining apache setup`"
+
+"We've installed apache, now lets set up our virtualhost."
+
+"`Refining the playbook`"
+
+"We need just one virtualhost on our server, but we want to replace the default one with something more specific. So we'll have to remove the current (presumably `default`) virtualhost, send our virtualhost, activate it and restart apache."
+
+run(`rm -rf files && cp -r /tutorials/files/step-5/files files`)
+
+"I've just created a directory called `files`, and added our virtualhost configuration for host1.example.org, which we'll call `awesome-app`"
+
+"Check the configuration file by running the following command:"
+
+"*cat files/awesome-app*"
+
+prompt {
+    if success && command == "cat files/awesome-app" {
+        expect ("cat files/awesome-app")
+        ""
+        break
+    }
+} 
+
+run(`rm -rf apache.yml && cp /tutorials/files/step-5/apache.yml apache.yml`)
+
+"Now, a quick update to our apache playbook and we're set. Inspect our playbook by running:"
+
+"*cat apache.yml*"
+
+prompt {
+    if success && command == "cat apache.yml" {
+        expect ("cat apache.yml")
+        ""
+        break
+    }
+} 
+
+"Here we go! Run the following command to execute our playbook:"
+
+"*ansible-playbook -i hosts -l host1.example.org apache.yml*"
+
+prompt {
+    if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
+        expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
+        ""
+        "Pretty cool!" 
+        break
+    }
+} 
+
+"Well, thinking about it, we're getting ahead of ourselves here. Shouldn't we check that the config is ok before restarting apache? This way we won't end up interrupting the service if our configuration file is incorrect."
+
+"Lets do that in the next lesson."
+
+"This is the end of this lesson!"
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}

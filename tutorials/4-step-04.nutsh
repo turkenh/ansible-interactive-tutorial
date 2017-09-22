@@ -113,7 +113,7 @@ prompt {
 
 "Sure our playbook can install apache server, but it could be a bit more complete. It could add a virtualhost, ensure apache is restarted. It could even deploy our web site from a git repository. Lets make it so`"
 
-"This is the end of the tutorial!"
+"This is the end of this lesson!"
 
 "Please press the \"`Enter`\" key to continue!"
 prompt {
