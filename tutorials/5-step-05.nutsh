@@ -1,6 +1,6 @@
 lesson_name("Playbooks, pushing files on nodes")
 make_and_go_ws
-run(`rm -rf hosts && cp /tutorials/files/step-5/hosts hosts`)
+run(`cp /tutorials/files/step-5/hosts hosts`)
 
 "`Refining apache setup`"
 
@@ -10,7 +10,7 @@ run(`rm -rf hosts && cp /tutorials/files/step-5/hosts hosts`)
 
 "We need just one virtualhost on our server, but we want to replace the default one with something more specific. So we'll have to remove the current (presumably `default`) virtualhost, send our virtualhost, activate it and restart apache."
 
-run(`rm -rf files && cp -r /tutorials/files/step-5/files files`)
+run(`cp -r /tutorials/files/step-5/files files`)
 
 "I've just created a directory called `files`, and added our virtualhost configuration for host1.example.org, which we'll call `awesome-app`"
 
@@ -26,7 +26,7 @@ prompt {
     }
 } 
 
-run(`rm -rf apache.yml && cp /tutorials/files/step-5/apache.yml apache.yml`)
+run(`cp /tutorials/files/step-5/apache.yml apache.yml`)
 
 "Now, a quick update to our apache playbook and we're set. Inspect our playbook by running:"
 

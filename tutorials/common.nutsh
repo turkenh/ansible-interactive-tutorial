@@ -8,7 +8,8 @@ def success {
 
 def make_and_go_ws {
     run(`WS="/root/workspace"`)
-    run(`mkdir -p "$WS"`)
+    run(`mkdir -p $WS`)
+    run(`rm -rf $WS/*`)
     run(`cd "$WS"`)
 }
 

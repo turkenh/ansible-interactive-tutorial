@@ -1,6 +1,6 @@
 lesson_name("Playbooks")
 make_and_go_ws
-run(`rm -rf hosts && cp /tutorials/files/step-4/hosts hosts`)
+run(`cp /tutorials/files/step-4/hosts hosts`)
 
 "`Ansible playbooks`"
 
@@ -23,7 +23,7 @@ prompt {
     }
 } 
 
-run(`rm -rf apache.yml && cp /tutorials/files/step-4/apache.yml apache.yml`)
+run(`cp /tutorials/files/step-4/apache.yml apache.yml`)
 
 "Lets build a playbook that will install apache on machines in the `web` group. I just copied the file into the current directory, run the following to see the content:"
 

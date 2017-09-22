@@ -14,7 +14,7 @@ prompt {
     }
 }
 
-run(`rm -rf hosts && cp /tutorials/files/step-1-2/hosts hosts`)
+run(`cp /tutorials/files/step-1-2/hosts hosts`)
 
 "We've created an inventory file for you in the workspace named `hosts`"
 
