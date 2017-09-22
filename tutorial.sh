@@ -32,8 +32,9 @@ function killContainerIfExists() {
 function runHostContainer() {
     local name=$1
     local image=$2
+    local port=$((33380 + $3))
     echo "starting container ${name}"
-    docker run --rm -d --net ${NETWORK_NAME} --name="${name}" "${image}"
+    docker run --rm -d -p 127.0.0.1:$port:80 --net ${NETWORK_NAME} --name="${name}" "${image}"
 }
 
 function runTutorialContainer() {
@@ -72,7 +73,7 @@ function init () {
     mkdir -p ${WORKSPACE}
     doesNetworkExist "${NETWORK_NAME}" || { echo "creating network ${NETWORK_NAME}" && docker network create "${NETWORK_NAME}"; }
     for ((i = 0; i < $NOF_HOSTS; i++)); do
-       doesContainerExist host$i.example.org || runHostContainer host$i.example.org ${DOCKER_HOST_IMAGE}
+       doesContainerExist host$i.example.org || runHostContainer host$i.example.org ${DOCKER_HOST_IMAGE} $i
     done
     setupFiles
     runTutorialContainer -it ansible.tutorial turkenh/ansible-tutorial

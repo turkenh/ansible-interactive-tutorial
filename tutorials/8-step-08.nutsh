@@ -1,0 +1,104 @@
+lesson_name("Git module")
+make_and_go_ws
+run(`cp /tutorials/files/step-8/hosts hosts`)
+run(`cp -r /tutorials/files/step-8/files files`)
+
+"`Deploying our website from git`"
+
+"We've installed apache, pushed our virtualhost and restarted the server safely. Now we'll use the git module to deploy our application."
+
+"`The git module`"
+
+"Well, this is a kind of break. Nothing necessarily new here. The `git` module is just another module. But we'll try it out just for fun. And we'll be familiar with it when it comes to `ansible-pull` later on."
+
+"Our virtualhost is set, but we need a few changes to finish our deployment. First, we're deploying a PHP application. So we need to install the `libapache2-mod-php5` package. Second, we have to install `git` since the git module (used to clone our application's git repository) uses it."
+
+"We could do it like this:"
+
+print("\t
+...\n\t
+- name: Installs apache web server\n\t
+  apt: pkg=apache2 state=installed update_cache=true\n\t
+\n\t
+- name: Installs php5 module\n\t
+  apt: pkg=libapache2-mod-php5 state=installed\n\t
+\n\t
+- name: Installs git\n\t
+  apt: pkg=git state=installed\n\t
+...\n\t
+")
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}
+
+"but Ansible provides a more readable way to write this. Ansible can loop over a series of items, and use each item in an action like this:"
+
+print("\t
+...\n\t
+- name: Installs necessary packages\n\t
+  apt: pkg={{ item }} state=latest\n\t
+  with_items:\n\t
+    - apache2\n\t
+    - libapache2-mod-php5\n\t
+    - git\n\t
+...\n\t
+")
+
+run(`cp /tutorials/files/step-7/apache.yml apache.yml`)
+
+"Now, first inspect our playbook by running:"
+
+"*cat apache.yml*"
+
+prompt {
+    if success && command == "cat apache.yml" {
+        expect ("cat apache.yml")
+        ""
+        break
+    }
+} 
+
+"Here we go! Run the following command to execute our playbook:"
+
+"*ansible-playbook -i hosts -l host1.example.org apache.yml*"
+
+prompt {
+    if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
+        expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
+        ""
+        "You can now browse to http://localhost:30180, and it should display a kitten, and the server hostname." 
+        break
+    }
+} 
+
+"Note the `tags:` deploy line allows you to execute just a part of the playbook. Let's say you push a new version for your site. You want to speed up and execute only the part that takes care of deployment. Tags allows you to do it. Of course, \"deploy\" is just a string, it doesn't have any specific meaning and can be anything."
+
+"Let's see how to use it, run the following command:"
+
+"*ansible-playbook -i hosts -l host1.example.org apache.yml -t deploy*"
+
+prompt {
+    if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml -t deploy" {
+        expect ("ansible-playbook -i hosts -l host1.example.org apache.yml -t deploy")
+        ""
+        "Cool!" 
+        break
+    }
+} 
+
+"Ok, let's deploy another web server in the next lesson."
+
+"This is the end of this lesson!"
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}
