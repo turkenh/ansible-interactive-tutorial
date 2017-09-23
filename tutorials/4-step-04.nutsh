@@ -10,7 +10,7 @@ run(`cp /tutorials/files/step-4/hosts hosts`)
 
 "`Apache example (a.k.a. Ansible's \"Hello World!\")`"
 
-"Inspect the inventory file that we prepared for this step by running the following command:"
+"Inspect the inventory file that we prepared for this lesson by running the following command:"
 
 "*cat hosts*"
 
