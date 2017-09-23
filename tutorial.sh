@@ -2,6 +2,7 @@
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 NOF_HOSTS=3
+HOSTPORT_BASE=33380
 NETWORK_NAME="ansible.tutorial"
 DOCKER_HOST_IMAGE="turkenh/ubuntu-1604-ansible-docker-host"
 WORKSPACE="${BASEDIR}/workspace"
@@ -32,7 +33,7 @@ function killContainerIfExists() {
 function runHostContainer() {
     local name=$1
     local image=$2
-    local port=$((33380 + $3))
+    local port=$(($HOSTPORT_BASE + $3))
     echo "starting container ${name}"
     docker run --rm -d -p 127.0.0.1:$port:80 --net ${NETWORK_NAME} --name="${name}" "${image}"
 }
@@ -48,7 +49,9 @@ function runTutorialContainer() {
         args="test /tutorials"  
     fi
     echo "starting container ${name}"
-    docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} ${entrypoint} --name="${name}" "${image}" ${args}
+    docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
+      --env HOSTPORT_BASE=$HOSTPORT_BASE \
+      ${entrypoint} --name="${name}" "${image}" ${args}
 }
 
 function remove () {

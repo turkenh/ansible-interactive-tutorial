@@ -20,8 +20,8 @@ print("\t
 - name: Installs apache web server\n\t
   apt: pkg=apache2 state=installed update_cache=true\n\t
 \n\t
-- name: Installs php5 module\n\t
-  apt: pkg=libapache2-mod-php5 state=installed\n\t
+- name: Installs php module\n\t
+  apt: pkg=libapache2-mod-php state=installed\n\t
 \n\t
 - name: Installs git\n\t
   apt: pkg=git state=installed\n\t
@@ -44,12 +44,12 @@ print("\t
   apt: pkg={{ item }} state=latest\n\t
   with_items:\n\t
     - apache2\n\t
-    - libapache2-mod-php5\n\t
+    - libapache2-mod-php\n\t
     - git\n\t
 ...\n\t
 ")
 
-run(`cp /tutorials/files/step-7/apache.yml apache.yml`)
+run(`cp /tutorials/files/step-8/apache.yml apache.yml`)
 
 "Now, first inspect our playbook by running:"
 
@@ -71,7 +71,8 @@ prompt {
     if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
         ""
-        "You can now browse to http://localhost:30180, and it should display a kitten, and the server hostname." 
+        say("You can now browse to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+1))`) + "`, and it should display a kitten, and the server hostname.")
+        say("Remember our hosts are docker containers and `port 80 of host1.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+1))`) + " of your local machine`") 
         break
     }
 } 
