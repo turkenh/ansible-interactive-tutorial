@@ -37,7 +37,7 @@ function runHostContainer() {
     local image=$2
     local port=$(($HOSTPORT_BASE + $3))
     echo "starting container ${name}"
-    docker run -d -p $port:80 --net ${NETWORK_NAME} --name="${name}" "${image}"
+    docker run -d -p $port:80 --net ${NETWORK_NAME} --name="${name}" "${image}" >/dev/null
 }
 
 function runTutorialContainer() {
@@ -74,7 +74,7 @@ function setupFiles() {
 }
 function init () {
     mkdir -p ${WORKSPACE}
-    doesNetworkExist "${NETWORK_NAME}" || { echo "creating network ${NETWORK_NAME}" && docker network create "${NETWORK_NAME}"; }
+    doesNetworkExist "${NETWORK_NAME}" || { echo "creating network ${NETWORK_NAME}" && docker network create "${NETWORK_NAME}" >/dev/null; }
     for ((i = 0; i < $NOF_HOSTS; i++)); do
        doesContainerExist host$i.example.org || runHostContainer host$i.example.org ${DOCKER_HOST_IMAGE} $i
     done
