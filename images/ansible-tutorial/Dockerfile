@@ -1,6 +1,6 @@
 FROM turkenh/nutsh:1.0
 
-RUN apk add --no-cache ansible openssh fping
+RUN apk add --no-cache ansible openssh fping curl
 
 WORKDIR /root
 

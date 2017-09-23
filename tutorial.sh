@@ -2,10 +2,29 @@
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 NOF_HOSTS=3
-HOSTPORT_BASE=33380
 NETWORK_NAME="ansible.tutorial"
 WORKSPACE="${BASEDIR}/workspace"
 TUTORIALS_FOLDER="${BASEDIR}/tutorials"
+
+HOSTPORT_BASE=${HOSTPORT_BASE:-42726}
+# Extra ports per host to expose. Should contain $NOF_HOSTS variables
+EXTRA_PORTS=( "8080" "30000" "443" )
+# Port Mapping
+# +-----------+----------------+-------------------+
+# | Container | Container Port |     Host Port     |
+# +-----------+----------------+-------------------+
+# |   host0   |       80       | $HOSTPORT_BASE    |
+# +-----------+----------------+-------------------+
+# |   host1   |       80       | $HOSTPORT_BASE+1  |
+# +-----------+----------------+-------------------+
+# |   host2   |       80       | $HOSTPORT_BASE+2  |
+# +-----------+----------------+-------------------+
+# |   host0   | EXTRA_PORTS[0] | $HOSTPORT_BASE+3  |
+# +-----------+----------------+-------------------+
+# |   host1   | EXTRA_PORTS[1] | $HOSTPORT_BASE+4  |
+# +-----------+----------------+-------------------+
+# |   host2   | EXTRA_PORTS[2] | $HOSTPORT_BASE+5  |
+# +-----------+----------------+-------------------+
 
 DOCKER_HOST_IMAGE="turkenh/ubuntu-1604-ansible-docker-host:1.0"
 TUTORIAL_IMAGE="turkenh/ansible-tutorial:1.0"
@@ -35,9 +54,14 @@ function killContainerIfExists() {
 function runHostContainer() {
     local name=$1
     local image=$2
-    local port=$(($HOSTPORT_BASE + $3))
-    echo "starting container ${name}"
-    docker run -d -p $port:80 --net ${NETWORK_NAME} --name="${name}" "${image}" >/dev/null
+    local port1=$(($HOSTPORT_BASE + $3))
+    local port2=$(($HOSTPORT_BASE + $3 + $NOF_HOSTS))
+    echo "starting container ${name}: mapping hostport $port1 -> container port 80 && hostport $port2 -> container port ${EXTRA_PORTS[$3]}"
+    docker run -d -p $port1:80 -p $port2:${EXTRA_PORTS[$3]} --net ${NETWORK_NAME} --name="${name}" "${image}" >/dev/null
+    if [ $? -ne 0 ]; then
+        echo "Could not start host container. Exiting!"
+        exit 1
+    fi
 }
 
 function runTutorialContainer() {
