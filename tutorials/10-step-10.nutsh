@@ -1,0 +1,97 @@
+lesson_name("Templates")
+make_and_go_ws
+run(`cp -r /tutorials/files/step-10/* .`)
+
+"`Templates`"
+
+"We'll use the `haproxy` as loadbalancer. Of course, install is just like we did for apache. But now configuration is a bit more tricky since we need to list all web servers in haproxy's configuration. How can we do that?"
+
+"`HAProxy configuration template`"
+
+"Ansible uses `Jinja2` ( `http://jinja.pocoo.org/docs/2.9/` ), a templating engine for Python. When you write Jinja2 templates, you can use any variable defined by Ansible."
+
+"For instance, if you want to output the `inventory_name` of the host the template is currently built for, you just can write `{{ inventory_hostname }}` in the Jinja template."
+
+"Or if you need the IP of the first ethernet interface (which ansible knows thanks to the `setup` module), you just write: `{{ ansible_eth0['ipv4']['address'] }}` in your template."
+
+"Jinja2 templates also support conditionals, for-loops, etc..."
+
+"I've just created a directory called `templates`, and created a Jinja template with name `haproxy.cfg.j2` inside. We use the `.j2` extension by convention, to make it obvious that this is a Jinja2 template, but this is not mandatory."
+
+"Inspect the template file by running the following command:"
+
+"*cat templates/haproxy.cfg.j2*"
+
+prompt {
+    if success && command == "cat templates/haproxy.cfg.j2" {
+        expect ("cat templates/haproxy.cfg.j2")
+        ""
+        "We have many new things going on here."
+        break
+    }
+} 
+
+"First, `{{ ansible_eth0['ipv4']['address'] }}` will be replaced by the IP of the load balancer on eth0."
+
+"Then, we have a loop. This loop is used to build the backend servers list. It will loop over every host listed in the `[web]` group (and put this host in the `backend` variable). For each of the hosts it will render a line using host's facts. All hosts' facts are exposed in the `hostvars` variable, so it's easy to access another host variables (like its hostname or in this case IP)."
+
+"We could have written the host list by hand, since we have only 2 of them. But we're hoping that the server will be very successful, and that we'll need a hundred of them. Thus, adding servers to the configuration or swapping some out boils down to adding or removing hosts from the `[web]` group."
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}
+
+"`HAProxy playbook`"
+
+"We've done the most difficult part of the job. Writing a playbook to install and configure HAproxy is a breeze."
+
+"Display the playbook for haproxy by running the following command:"
+
+"*cat haproxy.yml*"
+
+prompt {
+    if success && command == "cat haproxy.yml" {
+        expect ("cat haproxy.yml")
+        ""
+        break
+    }
+} 
+
+"Looks familiar, isn't it? The only new module here is `template`, which has the same arguments as `copy`. We also restrict this playbook to the group `haproxy`."
+
+"And now... let's try this out. Since our inventory contains only hosts necessary for the cluster, we don't need to limit the host list and can even run both playbooks. Well, to tell the truth, we must run both of them at the same time, since the haproxy playbook requires facts from the two webservers. In the next lesson we'll show how to avoid this."
+
+"Run the following command to execute our playbooks:"
+
+"*ansible-playbook -i hosts apache.yml haproxy.yml*"
+
+prompt {
+    if success && command == "ansible-playbook -i hosts apache.yml haproxy.yml" {
+        expect ("ansible-playbook -i hosts apache.yml haproxy.yml")
+        "" 
+        "Looks good." 
+        
+        say("Now head to `http://127.0.0.1:" + run (`echo $HOSTPORT_BASE`) + "` and see the result. Your cluster is deployed!")
+        
+        say("You can even peek at HAProxy's statistics at `http://127.0.0.1:" + run (`echo $HOSTPORT_BASE`) + "/haproxy?stats`")
+        
+        say("! Remember our hosts are docker containers and `port 80 of host0.example.org` is exposed to `port " +  run (`echo $HOSTPORT_BASE`) + " of your local machine`") 
+        break
+    }
+}
+
+"Now on to the next lesson about \"Variables again\"."
+
+"This is the end of this lesson!"
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}

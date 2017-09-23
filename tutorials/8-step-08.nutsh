@@ -72,7 +72,7 @@ prompt {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
         ""
         say("You can now browse to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+1))`) + "`, and it should display a kitten, and the server hostname.")
-        say("Remember our hosts are docker containers and `port 80 of host1.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+1))`) + " of your local machine`") 
+        say("! Remember our hosts are docker containers and `port 80 of host1.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+1))`) + " of your local machine`") 
         break
     }
 } 
