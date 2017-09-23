@@ -47,7 +47,7 @@ function runTutorialContainer() {
         entrypoint="--entrypoint nutsh"
         args="test /tutorials"  
     fi
-    echo "starting container ${name}"
+    echo "starting container ansible.tutorial"
     docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
       --env HOSTPORT_BASE=$HOSTPORT_BASE \
       ${entrypoint} --name="ansible.tutorial" "${TUTORIAL_IMAGE}" ${args}
