@@ -310,6 +310,12 @@ prompt {
 
         "Perfect!"
 
+        say("Now head to `http://127.0.0.1:" + run (`echo $HOSTPORT_BASE`) + "` and see the result. Your cluster is deployed!")
+        
+        say("You can even peek at HAProxy's statistics at `http://127.0.0.1:" + run (`echo $HOSTPORT_BASE`) + "/haproxy?stats`")
+        
+        say("! Remember our hosts are docker containers and `port 80 of host0.example.org` is exposed to `port " +  run (`echo $HOSTPORT_BASE`) + " of your local machine`") 
+
         break
     }
 } 

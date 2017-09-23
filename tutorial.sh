@@ -21,7 +21,7 @@ function doesNetworkExist() {
 }
 
 function removeNetworkIfExists() {
-    doesNetworkExist $1 && echo "removing network $1" && docker network rm $1
+    doesNetworkExist $1 && echo "removing network $1" && docker network rm $1 >/dev/null
 }
 
 function doesContainerExist() {
@@ -29,7 +29,7 @@ function doesContainerExist() {
 }
 
 function killContainerIfExists() {
-    doesContainerExist $1 && echo "killing container $1" && { docker kill $1 2>/dev/null; docker rm $1 2>/dev/null; };
+    doesContainerExist $1 && echo "killing container $1" && { docker kill $1 >/dev/null 2>&1; docker rm $1 >/dev/null 2>&1; };
 }
 
 function runHostContainer() {
