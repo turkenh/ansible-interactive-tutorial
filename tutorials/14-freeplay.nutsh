@@ -3,11 +3,11 @@ make_and_go_ws
 
 "This is not a lesson, rather an option to let you play with ansible!"
 
-"Remember you can quit by typing `exit` once you're done!"
+"Remember you can quit by typing `exit` or `done` once you're done!"
 
 prompt {
-    if command == "exit" {
-        expect ("exit")
+    if command == "done" {
+        expect ("done")
         break
     }
 }
