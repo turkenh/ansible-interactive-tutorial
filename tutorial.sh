@@ -45,19 +45,20 @@ function runTutorialContainer() {
     local args=""
     if [ -n "${TEST}" ]; then
         entrypoint="--entrypoint nutsh"
-        args="test /tutorials"  
+        args="test /tutorials ${LESSON_NAME}"  
     fi
     echo "starting container ansible.tutorial"
-    docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
+    killContainerIfExists ansible.tutorial
+    docker run -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
       --env HOSTPORT_BASE=$HOSTPORT_BASE \
       ${entrypoint} --name="ansible.tutorial" "${TUTORIAL_IMAGE}" ${args}
+    return $?
 }
 
 function remove () {
     for ((i = 0; i < $NOF_HOSTS; i++)); do
        killContainerIfExists host$i.example.org
     done
-    killContainerIfExists ansible-tutorial
     removeNetworkIfExists ${NETWORK_NAME}
 } 
 
@@ -79,6 +80,7 @@ function init () {
     done
     setupFiles
     runTutorialContainer
+    exit $?
 }
 
 ###
