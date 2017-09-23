@@ -1,5 +1,6 @@
 lesson_name("Migrating to roles!")
 make_and_go_ws
+clear_ws
 run(`cp -r /tutorials/files/step-12/* .`)
 
 "`Migrating to roles!`"

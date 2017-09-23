@@ -1,5 +1,6 @@
 lesson_name("First modules and facts")
 make_and_go_ws
+clear_ws
 run(`cp /tutorials/files/step-1-2/hosts hosts`)
 
 "`Talking with nodes`"

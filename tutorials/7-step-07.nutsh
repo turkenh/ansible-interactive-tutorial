@@ -1,5 +1,6 @@
 lesson_name("Playbook conditionals")
 make_and_go_ws
+clear_ws
 run(`cp /tutorials/files/step-7/hosts hosts`)
 run(`cp -r /tutorials/files/step-7/files files`)
 

@@ -1,5 +1,6 @@
 lesson_name("Basic inventory")
 make_and_go_ws
+clear_ws
 
 "`INVENTORY`"
 

@@ -1,5 +1,6 @@
 lesson_name("Variables again")
 make_and_go_ws
+clear_ws
 run(`cp -r /tutorials/files/step-11/* .`)
 
 "`Variables again`"

@@ -1,4 +1,5 @@
 lesson_name("Getting Started")
+make_and_go_ws
 
 "Hello, welcome to the Ansible Interactive Tutorial!"
 

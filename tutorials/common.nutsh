@@ -9,8 +9,12 @@ def success {
 def make_and_go_ws {
     run(`WS="/root/workspace"`)
     run(`mkdir -p $WS`)
-    run(`rm -rf $WS/*`)
     run(`cd "$WS"`)
+}
+
+def clear_ws {
+    run(`WS="/root/workspace"`)
+    run(`rm -rf $WS/*`)
 }
 
 def enter_to_continue {

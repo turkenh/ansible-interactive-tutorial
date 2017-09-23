@@ -1,5 +1,6 @@
 lesson_name("Groups and variables")
 make_and_go_ws
+clear_ws
 
 "`Grouping hosts`"
 
