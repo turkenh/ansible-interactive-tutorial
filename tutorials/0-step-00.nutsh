@@ -48,6 +48,8 @@ prompt {
     }
 }
 
+"`ansible-interactive-tutorial/workspace` folder is mounted as `/root/workspace` inside this container. So, you can use your favorite editor on your local machine to edit files. Editing files is not necessary to follow the lessons though."
+
 "You can run each lesson invididually but it is `highly encoureged to follow the order` as most of them are built on top of the previous one!"
 
 "Please keep in mind, you can quit from any lesson by running *exit* from terminal"
