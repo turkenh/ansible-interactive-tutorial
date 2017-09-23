@@ -1,0 +1,8 @@
+- hosts: jenkins
+  vars:
+    jenkins_hostname: host0.example.org
+  roles:
+    - role: geerlingguy.java
+    - role: geerlingguy.jenkins
+      jenkins_http_port: 8080
+      become: true

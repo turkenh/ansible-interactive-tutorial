@@ -1,0 +1,49 @@
+lesson_name("Using roles from Ansible Galaxy - Install a Jenkins server")
+make_and_go_ws
+clear_ws
+run(`cp -r /tutorials/files/step-13/* .`)
+
+"Run the following command to install the required role"
+
+"*ansible-galaxy install geerlingguy.jenkins*"
+
+prompt {
+    if success && command == "ansible-galaxy install geerlingguy.jenkins" {
+        expect ("ansible-galaxy install geerlingguy.jenkins")
+        "" 
+        "OK!" 
+        break
+    }
+}
+
+"Run the following command to run the playbook"
+
+"*ansible-playbook -i hosts jenkins.yaml*"
+
+prompt {
+    if success && command == "ansible-playbook -i hosts jenkins.yaml" {
+        expect ("ansible-playbook -i hosts jenkins.yaml")
+        "" 
+        
+        "Perfect!"
+
+        say("Now head to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+3))`) + "` and see the result!")
+
+        say("You can login with admin/admin :)")
+        
+        say("! Remember our hosts are docker containers and `port 8080 of host0.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+3))`) + " of your local machine`") 
+
+        break
+    }
+}
+
+
+"This is the end of this lesson!"
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}
