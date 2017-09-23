@@ -4,9 +4,11 @@ BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NOF_HOSTS=3
 HOSTPORT_BASE=33380
 NETWORK_NAME="ansible.tutorial"
-DOCKER_HOST_IMAGE="turkenh/ubuntu-1604-ansible-docker-host"
 WORKSPACE="${BASEDIR}/workspace"
 TUTORIALS_FOLDER="${BASEDIR}/tutorials"
+
+DOCKER_HOST_IMAGE="turkenh/ubuntu-1604-ansible-docker-host:1.0"
+TUTORIAL_IMAGE="turkenh/ansible-tutorial:1.0"
 
 function help() {
     echo -ne "-h, --help              prints this help message
@@ -39,9 +41,6 @@ function runHostContainer() {
 }
 
 function runTutorialContainer() {
-    local mode_flag=$1
-    local name=$2
-    local image=$3
     local entrypoint=""
     local args=""
     if [ -n "${TEST}" ]; then
@@ -51,7 +50,7 @@ function runTutorialContainer() {
     echo "starting container ${name}"
     docker run --rm -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
       --env HOSTPORT_BASE=$HOSTPORT_BASE \
-      ${entrypoint} --name="${name}" "${image}" ${args}
+      ${entrypoint} --name="ansible.tutorial" "${TUTORIAL_IMAGE}" ${args}
 }
 
 function remove () {
@@ -79,7 +78,7 @@ function init () {
        doesContainerExist host$i.example.org || runHostContainer host$i.example.org ${DOCKER_HOST_IMAGE} $i
     done
     setupFiles
-    runTutorialContainer -it ansible.tutorial turkenh/ansible-tutorial
+    runTutorialContainer
 }
 
 ###

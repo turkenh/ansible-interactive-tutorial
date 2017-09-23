@@ -33,6 +33,21 @@ prompt {
     }
 }
 
+"These hosts were already provisioned with the ssh key of this node. So you don't have to deal with setting up keys and can directly ssh into any of them as root user."
+
+"Try it and don't forget to get back by to continue (run *exit* once you get there):"
+
+"*ssh host0.example.org*"
+
+prompt {
+    if success && command =~ "ssh host0.example.org.*" {
+        expect (`ssh host0.example.org -o "StrictHostKeyChecking no" "whoami"`)
+        ""
+        "Welcome back :)"
+        break
+    }
+}
+
 "You can run each lesson invididually but it is `highly encoureged to follow the order` as most of them are built on top of the previous one!"
 
 "Please keep in mind, you can quit from any lesson by running *exit* from terminal"

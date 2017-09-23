@@ -1,4 +1,4 @@
-FROM turkenh/nutsh
+FROM turkenh/nutsh:1.0
 
 RUN apk add --no-cache ansible openssh fping
 
