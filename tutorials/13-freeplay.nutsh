@@ -1,0 +1,13 @@
+lesson_name("Free play")
+make_and_go_ws
+
+"This is not a lesson, rather an option to let you play with ansible!"
+
+"Remember you can quit by typing `exit` once you're done!"
+
+prompt {
+    if command == "exit" {
+        expect ("exit")
+        break
+    }
+}
