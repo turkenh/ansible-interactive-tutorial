@@ -1,3 +1,48 @@
-lesson_name("Getting Ready")
+lesson_name("Getting Started")
 
-"Hello, welcome to the Ansible Playground!"
+"Hello, welcome to the Ansible Interactive Tutorial!"
+
+"This lesson is to make you familiar with the environment."
+
+"Now, you are inside a docker container on which you have ansible installed."
+
+"Verify that you have `ansible` installed by running the following command:"
+
+"*ansible --version*"
+
+prompt {
+    if success && command == "ansible --version" {
+        expect ("ansible --version")
+        ""
+        break
+    }
+} 
+
+"There are 3 more docker containers which behaves exactly same as (virtual or physical) machines acting as Ansible nodes throughout the tutorial."
+
+"Run the following command to verify that they are up and running:"
+
+"*fping host{0,1,2}.example.org*"
+
+prompt {
+    if success && command == "fping host{0,1,2}.example.org" {
+        expect ("fping host{0,1,2}.example.org")
+        ""
+        "Cool!"
+        break
+    }
+}
+
+"You can run each lesson invididually but it is `highly encoureged to follow the order` as most of them are built on top of the previous one!"
+
+"Please keep in mind, you can quit from any lesson by running *exit* from terminal"
+
+"Now you are ready to start!"
+
+"Please press the \"`Enter`\" key to continue!"
+prompt {
+    if command == "" {
+        expect (" ")
+        break
+    }
+}

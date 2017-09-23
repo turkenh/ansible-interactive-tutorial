@@ -1,6 +1,6 @@
 FROM turkenh/nutsh
 
-RUN apk add --no-cache ansible openssh
+RUN apk add --no-cache ansible openssh fping
 
 COPY tutorials /tutorials
 
