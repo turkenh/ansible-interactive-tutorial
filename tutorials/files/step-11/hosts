@@ -1,0 +1,6 @@
+[web]
+host1.example.org
+host2.example.org
+
+[haproxy]
+host0.example.org
