@@ -29,7 +29,7 @@ function doesContainerExist() {
 }
 
 function killContainerIfExists() {
-    doesContainerExist $1 && echo "killing container $1" && { docker kill $1 >/dev/null 2>&1; docker rm $1 >/dev/null 2>&1; };
+    doesContainerExist $1 && echo "killing/removing container $1" && { docker kill $1 >/dev/null 2>&1; docker rm $1 >/dev/null 2>&1; };
 }
 
 function runHostContainer() {
@@ -37,7 +37,7 @@ function runHostContainer() {
     local image=$2
     local port=$(($HOSTPORT_BASE + $3))
     echo "starting container ${name}"
-    docker run -d -p 127.0.0.1:$port:80 --net ${NETWORK_NAME} --name="${name}" "${image}"
+    docker run -d -p $port:80 --net ${NETWORK_NAME} --name="${name}" "${image}"
 }
 
 function runTutorialContainer() {
