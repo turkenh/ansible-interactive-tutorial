@@ -8,7 +8,7 @@ env:
   - DOCKER_IMAGETAG="latest"
 before_script:
   - ./tutorial.sh -r
-  - if [ "${DOCKER_IMAGETAG}" == "latest" ]; then cd images && TAG=latest make build_all; fi
+  - if [ "${DOCKER_IMAGETAG}" == "latest" ]; then pushd images && make build_all TAG=latest&& popd; fi
 
 script:
   - LESSON_NAME="0-step-00" ./tutorial.sh -t
