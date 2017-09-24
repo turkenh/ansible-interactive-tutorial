@@ -15,21 +15,21 @@ install:
   - ./tutorial.sh -r
 
 script:
-  - LESSON_NAME="0-step-00" ./tutorial.sh -t
-  - LESSON_NAME="1-step-01" ./tutorial.sh -t
-  - LESSON_NAME="2-step-02" ./tutorial.sh -t
-  - LESSON_NAME="3-step-03" ./tutorial.sh -t
-  - LESSON_NAME="4-step-04" ./tutorial.sh -t
-  - LESSON_NAME="5-step-05" ./tutorial.sh -t
-  - LESSON_NAME="6-step-06" ./tutorial.sh -t
-  - LESSON_NAME="7-step-07" ./tutorial.sh -t
-  - LESSON_NAME="8-step-08" ./tutorial.sh -t
-  - LESSON_NAME="9-step-09" ./tutorial.sh -t
-  - LESSON_NAME="10-step-10" ./tutorial.sh -t
-  - LESSON_NAME="11-step-11" ./tutorial.sh -t
-  - LESSON_NAME="12-step-12" ./tutorial.sh -t
-  - LESSON_NAME="13-step-13" ./tutorial.sh -t
-  - LESSON_NAME="14-step-14" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="14-step-14" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="0-step-00" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="1-step-01" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="2-step-02" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="3-step-03" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="4-step-04" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="5-step-05" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="6-step-06" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="7-step-07" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="8-step-08" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="9-step-09" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="10-step-10" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="11-step-11" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="12-step-12" ./tutorial.sh -t
+  - sleep 3 && LESSON_NAME="13-step-13" ./tutorial.sh -t
   
 after_script:
   - ./tutorial.sh -r
