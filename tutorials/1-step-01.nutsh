@@ -17,7 +17,7 @@ prompt {
 
 run(`cp /tutorials/files/step-1-2/hosts hosts`)
 
-"We've created an inventory file for you in the workspace named `hosts`"
+"I've created an inventory file for you in the workspace named `hosts`"
 
 "Please run *cat hosts* to see the content of your first inventory file"
 

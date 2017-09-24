@@ -26,7 +26,9 @@ prompt {
 
 run(`cp /tutorials/files/step-4/apache.yml apache.yml`)
 
-"Lets build a playbook that will install apache on machines in the `web` group. I just copied the file into the current directory, run the following to see the content:"
+"Lets build a playbook that will install apache on machines in the `web` group." 
+
+"I've just copied a playbook file into the current directory, run the following to see the content:"
 
 "*cat apache.yml*" 
 

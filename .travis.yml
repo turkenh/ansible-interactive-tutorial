@@ -3,8 +3,12 @@ language: bash
 services:
   - docker
 
+env: 
+  - DOCKER_IMAGETAG="1.0"
+  - DOCKER_IMAGETAG="latest"
 before_script:
   - ./tutorial.sh -r
+  - if [ "${DOCKER_IMAGETAG}" == "latest" ]; then cd images && TAG=latest make build_all; fi
 
 script:
   - LESSON_NAME="0-step-00" ./tutorial.sh -t
