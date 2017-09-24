@@ -3,6 +3,12 @@ make_and_go_ws
 clear_ws
 run(`cp -r /tutorials/files/step-13/* .`)
 
+"Ansible Galaxy ( `http://docs.ansible.com/ansible/latest/galaxy.html` ) refers to the Galaxy website where users can share roles, and to a command line tool for installing, creating and managing roles."
+
+"In this lesson, we are going to use a role from Ansible Galaxy to install Jenkins on one of our nodes."
+
+"You can browse available roles here: `https://galaxy.ansible.com/list#/roles`"
+
 "Run the following command to install the required role"
 
 "*ansible-galaxy install geerlingguy.jenkins*"
@@ -16,7 +22,41 @@ prompt {
     }
 }
 
-"Run the following command to run the playbook"
+"Let's continue with an inventory file. We will install on `host0.example.org`"
+
+"Check the inventory file I've prepared for you, by running:"
+
+"*cat hosts*"
+
+prompt {
+    if success && command == "cat hosts" {
+        expect ("cat hosts")
+        ""
+        "See? We created a new group named `jenkins`. This is not mandatory but a good practice."   
+        break
+    }
+}
+
+"Now we need a playbook and we will use the one provided as example in github repo of the role: `https://github.com/geerlingguy/ansible-role-jenkins#example-playbook`"
+
+"Inspect our playbook, by running:"
+
+"*cat jenkins.yaml*"
+
+prompt {
+    if success && command == "cat jenkins.yaml" {
+        expect ("cat jenkins.yaml")
+        ""
+
+        "The playbook includes another role which installs `java` (a prerequisite for jenkins). This role has already been installed with our first `ansible-galaxy install ...` command as `geerlingguy.jenkins` has a dependency on `geerlingguy.java`."
+
+        "That's it, we are ready to go!"  
+         
+        break
+    }
+}
+
+"Run the following command to run the playbook:"
 
 "*ansible-playbook -i hosts jenkins.yaml*"
 
@@ -27,9 +67,9 @@ prompt {
         
         "Perfect!"
 
-        say("Now head to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+3))`) + "` and see the result!")
+        say("Now go to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+3))`) + "` and see the result!")
 
-        say("You can login with admin/admin :)")
+        say("You can login with `admin/admin` :)")
         
         say("! Remember our hosts are docker containers and `port 8080 of host0.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+3))`) + " of your local machine`") 
 
