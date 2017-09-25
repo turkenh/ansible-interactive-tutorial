@@ -19,7 +19,7 @@ prompt {
     }
 } 
 
-"There are 3 more docker containers which behaves exactly same as (virtual or physical) machines acting as Ansible nodes throughout the tutorial."
+"There are 3 more docker containers which behave exactly same as (virtual or physical) machines acting as Ansible nodes throughout the tutorial."
 
 "Run the following command to verify that they are up and running:"
 
