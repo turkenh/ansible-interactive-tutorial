@@ -36,7 +36,7 @@ prompt {
 
 "These hosts were already provisioned with the ssh key of this node. So you don't have to deal with setting up keys and can directly ssh into any of them as root user."
 
-"Try it and don't forget to get back by to continue (run *exit* once you get there):"
+"Try it and don't forget to get back to continue (run *exit* once you got there):"
 
 "*ssh host0.example.org*"
 
