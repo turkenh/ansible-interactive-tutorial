@@ -16,7 +16,7 @@ Tested with docker versions 1.12+ but should work with other versions as well.
 ./tutorial.sh
 ```
 
-[![demo](https://asciinema.org/a/QGAeQ47mpB01947hy9fxDCuHR.png)](https://asciinema.org/a/QGAeQ47mpB01947hy9fxDCuHR?autoplay=1)
+[![demo](https://asciinema.org/a/CPUhOGGlcLiXVlZKIuiuk5Q7f.png)](https://asciinema.org/a/CPUhOGGlcLiXVlZKIuiuk5Q7f?autoplay=1)
 
 ## Clean up
 
