@@ -48,14 +48,14 @@ Almost all of the tutorials are adapted from the great [leucos/ansible-tuto](htt
 15. Free play
 ```
 
-You can run each lesson invididually but it is **highly encoureged to follow the order** as most of them are built on top of the previous one!
+You can run each lesson individually but it is **highly encouraged to follow the order** as most of them are built on top of the previous one!
 
 
 ### Containers
 
 `tutorial.sh` starts 4 docker containers behind the scenes. 1 for running the tutorial itself and 3 as ansible nodes which behave exactly same as (virtual or physical) machines throughout the tutorial. 
 
-**ansible.tutorial** is and alpine based tutorial container in which ansible and [nutsh](https://github.com/turkenh/nutsh) (a framework for creating interactive command line tutorials) is available.
+**ansible.tutorial** is an alpine based tutorial container in which ansible and [nutsh](https://github.com/turkenh/nutsh) (a framework for creating interactive command line tutorials) are available.
 
 **host0.example.org**, **host1.example.org** and **host2.example.org** are the Ubuntu 16.04 based containers that act as ansible nodes. These nodes were already provisioned with the ssh key of **ansible.tutorial** container. So that you don't have to deal with setting up keys.
 
@@ -72,15 +72,15 @@ host0.example.org|8080|`$HOSTPORT_BASE+3`
 host1.example.org|30000|`$HOSTPORT_BASE+4`
 host2.example.org|443|`$HOSTPORT_BASE+5`
 
-`HOSTPORT_BASE` is set to `42726` by default and can be changed while starting the tutorial (in case any of the consecutive 6 ports is not avaiable) as follows:
+`HOSTPORT_BASE` is set to `42726` by default and can be changed while starting the tutorial (in case any of the consecutive 6 ports is not available) as follows:
 
 ```bash
 ./tutorial.sh --remove # Make sure you shut down the previous ones
 HOSTPORT_BASE=<some_other_value> ./tutorial.sh
 ```
 
-### Workspace Folder
-`ansible-interactive-tutorial/workspace` folder on your local machine is mounted as `/root/workspace` inside the **ansible.tutorial** container. So, you can use your favorite editor on your local machine to edit files. Editing files is not necessary to follow the lessons though.
+### Workspace Directory
+`ansible-interactive-tutorial/workspace` directory on your local machine is mounted as `/root/workspace` inside the **ansible.tutorial** container. So, you can use your favorite editor on your local machine to edit files. Editing files is not necessary to follow the lessons though.
 
 
 
