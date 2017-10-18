@@ -22,15 +22,15 @@ prompt {
         "Note: remember you can (and in our exercise we do) use `ansible_host` to set the real IP of the host. In the real hosts file, we also have `ansible_user=root` to cope with potential different ansible default configurations."
         break
     }
-} 
+}
 
 run(`cp /tutorials/files/step-4/apache.yml apache.yml`)
 
-"Lets build a playbook that will install apache on machines in the `web` group." 
+"Lets build a playbook that will install apache on machines in the `web` group."
 
 "I've just copied a playbook file into the current directory, run the following to see the content:"
 
-"*cat apache.yml*" 
+"*cat apache.yml*"
 
 prompt {
     if success && command == "cat apache.yml" {
@@ -43,7 +43,7 @@ prompt {
         "All in all, this was quite easy!"
         break
     }
-} 
+}
 
 "We will now continue with the command below. Here, `hosts` is the inventory file, `-l` limits the run only to `host1.example.org` and `apache.yml` is our playbook."
 
@@ -54,12 +54,12 @@ prompt {
 prompt {
     if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
-        
+
         "Great! Let's analyse the output one line at a time."
 
         break
     }
-} 
+}
 
 "Please press the \"`Enter`\" key to continue!"
 prompt {
@@ -103,18 +103,18 @@ host1.example.org              : ok=2    changed=1    unreachable=0    failed=0 
 prompt {
     if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
-        
+
         "Note the changed field, it is now `0`"
 
         break
     }
-} 
+}
 
 "This is absolutely normal and is one of the core feature of ansible: the playbook will act only if there is something to do. It's called `idempotency`, and means that you can run your playbook as many times as you want, you will always end up in the same state (well, unless you do crazy things with the `shell` module of course, but this is beyond ansible's control)."
 
 "`Refining things`"
 
-"Sure our playbook can install apache server, but it could be a bit more complete. It could add a virtualhost, ensure apache is restarted. It could even deploy our web site from a git repository. Lets make it so`"
+"Sure our playbook can install apache server, but it could be a bit more complete. It could add a virtualhost, ensure apache is restarted. It could even deploy our web site from a git repository. Let's make it so."
 
 "This is the end of this lesson!"
 
