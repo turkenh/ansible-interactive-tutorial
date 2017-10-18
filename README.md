@@ -8,7 +8,9 @@ Interactive tutorials for Ansible
 
 Only prerequisite is **docker**
 
-Tested with docker versions 1.12+ but should work with other versions as well.
+Requires docker version 1.9+ and tested with 1.12+
+
+If you don't have docker installer, you can also run on http://play-with-docker.com (just click "+ ADD NEW INSTANCE" button and clone this repo there)
 
 ## How to Run
 
