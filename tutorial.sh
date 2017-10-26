@@ -74,7 +74,7 @@ function runTutorialContainer() {
     fi
     killContainerIfExists ansible.tutorial > /dev/null
     echo "starting container ansible.tutorial"
-    docker run -it -v ${WORKSPACE}:/root/workspace -v ${TUTORIALS_FOLDER}:/tutorials --net ${NETWORK_NAME} \
+    docker run -it -v "${WORKSPACE}":/root/workspace -v "${TUTORIALS_FOLDER}":/tutorials --net ${NETWORK_NAME} \
       --env HOSTPORT_BASE=$HOSTPORT_BASE \
       ${entrypoint} --name="ansible.tutorial" "${TUTORIAL_IMAGE}" ${args}
     return $?
@@ -98,7 +98,7 @@ function setupFiles() {
     done
 }
 function init () {
-    mkdir -p ${WORKSPACE}
+    mkdir -p "${WORKSPACE}"
     doesNetworkExist "${NETWORK_NAME}" || { echo "creating network ${NETWORK_NAME}" && docker network create "${NETWORK_NAME}" >/dev/null; }
     for ((i = 0; i < $NOF_HOSTS; i++)); do
        doesContainerExist host$i.example.org || runHostContainer host$i.example.org ${DOCKER_HOST_IMAGE} $i
