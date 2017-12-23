@@ -287,11 +287,11 @@ prompt {
 
 "Finally move `templates folder` (which only contains the haproxy template file) to the correct place:"
 
-"*mv templates roles/haproxy/templates*"
+"*mv templates roles/haproxy/*"
 
 prompt {
-    if success && command == "mv templates roles/haproxy/templates" {
-        expect ("mv templates roles/haproxy/templates")
+    if success && command == "mv templates roles/haproxy/" {
+        expect ("mv templates roles/haproxy/")
         ""
         break
     }
