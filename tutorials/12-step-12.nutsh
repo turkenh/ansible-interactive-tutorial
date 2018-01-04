@@ -242,7 +242,7 @@ prompt {
 "We could create the haproxy role directory structure using mkdir as we did for apache role:"
 
 print("\t
-mkdir -p step-12/roles/haproxy/{tasks,handlers,templates}\n\t
+mkdir -p roles/haproxy/{tasks,handlers,templates}\n\t
 ")
 
 "But, we have another option which is using `ansible-galaxy`. Let's do it so:"
