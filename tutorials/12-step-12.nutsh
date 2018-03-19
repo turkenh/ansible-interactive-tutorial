@@ -166,7 +166,7 @@ prompt {
 
 "`Extracting the handler`"
 
-"I've extracted the handlers part into file `apache_handlers.yaml`. Check its content:"
+"I've extracted the handlers part into file `apache_handlers.yml`. Check its content:"
 
 "*cat apache_handlers.yml*"
 
