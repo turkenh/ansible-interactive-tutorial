@@ -4,7 +4,7 @@ services:
   - docker
 
 env: 
-  - DOCKER_IMAGETAG="1.0"
+  - DOCKER_IMAGETAG="1.1"
 before_script:
   - ./tutorial.sh -r
   - if [ "${DOCKER_IMAGETAG}" == "latest" ]; then pushd images && make build_all TAG=latest&& popd; fi
