@@ -26,7 +26,7 @@ EXTRA_PORTS=( "8080" "30000" "443" )
 # |   host2   | EXTRA_PORTS[2] | $HOSTPORT_BASE+5  |
 # +-----------+----------------+-------------------+
 
-DOCKER_IMAGETAG=${DOCKER_IMAGETAG:-1.0}
+DOCKER_IMAGETAG=${DOCKER_IMAGETAG:-1.1}
 DOCKER_HOST_IMAGE="turkenh/ubuntu-1604-ansible-docker-host:${DOCKER_IMAGETAG}"
 TUTORIAL_IMAGE="turkenh/ansible-tutorial:${DOCKER_IMAGETAG}"
 

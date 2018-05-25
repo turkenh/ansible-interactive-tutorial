@@ -1,5 +1,5 @@
 USER=turkenh
-TAG=1.0
+TAG=1.1
 
 .DEFAULT_GOAL := all
 
@@ -7,7 +7,7 @@ build:
 	docker build -t $(USER)/${IMAGE}:${TAG} -f ${IMAGE}/Dockerfile .
 
 push:
-	docker push $(USER)/${IMAGE}:${TAG} 
+	docker push $(USER)/${IMAGE}:${TAG}
 
 build_and_push: build push
 
