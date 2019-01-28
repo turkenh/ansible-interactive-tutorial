@@ -62,7 +62,7 @@ prompt {
         ""
         break
     }
-} 
+}
 
 "Here we go! Run the following command to execute our playbook:"
 
@@ -72,11 +72,11 @@ prompt {
     if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml" {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml")
         ""
-        say("You can now browse to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+1))`) + "`, and it should display a kitten, and the server hostname.")
-        say("! Remember our hosts are docker containers and `port 80 of host1.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+1))`) + " of your local machine`") 
+        say("You can now browse to `http://127.0.0.1:" + run (`echo $(($HOSTPORT_BASE+1))`) + "`, and it should display a Bill Murray, and the server hostname.")
+        say("! Remember our hosts are docker containers and `port 80 of host1.example.org` is exposed to `port " +  run (`echo $(($HOSTPORT_BASE+1))`) + " of your local machine`")
         break
     }
-} 
+}
 
 "Note the `tags:` deploy line allows you to execute just a part of the playbook. Let's say you push a new version for your site. You want to speed up and execute only the part that takes care of deployment. Tags allows you to do it. Of course, \"deploy\" is just a string, it doesn't have any specific meaning and can be anything."
 
@@ -88,10 +88,10 @@ prompt {
     if success && command == "ansible-playbook -i hosts -l host1.example.org apache.yml -t deploy" {
         expect ("ansible-playbook -i hosts -l host1.example.org apache.yml -t deploy")
         ""
-        "Cool!" 
+        "Cool!"
         break
     }
-} 
+}
 
 "Ok, let's deploy another web server in the next lesson."
 
