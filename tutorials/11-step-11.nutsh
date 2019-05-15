@@ -56,7 +56,7 @@ prompt {
 
 "Hosts vars follow exactly the same rules, but live in files under `host_vars` directory."
 
-"Let's define weights for our backends in host_vars/host1.example.com:"
+"Let's define weights for our backends in `host_vars/host1.example.com:`"
 
 print("\t
 haproxy_backend_weight: 100\n\t
