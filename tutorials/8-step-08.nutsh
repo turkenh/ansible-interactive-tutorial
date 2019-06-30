@@ -19,13 +19,13 @@ run(`cp -r /tutorials/files/step-8/files files`)
 print("\t
 ...\n\t
 - name: Installs apache web server\n\t
-  apt: pkg=apache2 state=installed update_cache=true\n\t
+  apt: pkg=apache2 state=present update_cache=true\n\t
 \n\t
 - name: Installs php module\n\t
-  apt: pkg=libapache2-mod-php state=installed\n\t
+  apt: pkg=libapache2-mod-php state=present\n\t
 \n\t
 - name: Installs git\n\t
-  apt: pkg=git state=installed\n\t
+  apt: pkg=git state=present\n\t
 ...\n\t
 ")
 
