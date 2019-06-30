@@ -1,7 +1,7 @@
 - hosts: haproxy
   tasks:
     - name: Installs haproxy load balancer
-      apt: pkg=haproxy state=installed update_cache=yes
+      apt: pkg=haproxy state=present update_cache=yes
 
     - name: Pushes configuration
       template: src=templates/haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg mode=0640 owner=root group=root
