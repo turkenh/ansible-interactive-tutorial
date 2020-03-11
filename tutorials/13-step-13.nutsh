@@ -7,7 +7,7 @@ run(`cp -r /tutorials/files/step-13/* .`)
 
 "In this lesson, we are going to use a role from Ansible Galaxy to install Jenkins on one of our nodes."
 
-"You can browse available roles here: `https://galaxy.ansible.com/list#/roles`"
+"You can browse available roles here: https://galaxy.ansible.com/search?keywords=&order_by=-relevance&deprecated=false&type=role&page=1"
 
 "Run the following command to install the required role"
 
