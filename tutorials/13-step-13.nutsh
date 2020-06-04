@@ -11,11 +11,11 @@ run(`cp -r /tutorials/files/step-13/* .`)
 
 "Run the following command to install the required role"
 
-"*ansible-galaxy install geerlingguy.jenkins*"
+"*ansible-galaxy install geerlingguy.jenkins geerlingguy.java*"
 
 prompt {
-    if success && command == "ansible-galaxy install geerlingguy.jenkins" {
-        expect ("ansible-galaxy install geerlingguy.jenkins")
+    if success && command == "ansible-galaxy install geerlingguy.jenkins geerlingguy.java" {
+        expect ("ansible-galaxy install geerlingguy.jenkins geerlingguy.java")
         "" 
         "OK!" 
         break
