@@ -72,7 +72,7 @@ prompt {
 
 "We'll see other useful modules below. Ansible has a huge module list that covers almost anything you can do on a system."
 
-"Please see the following page: `http://docs.ansible.com/ansible/latest/list_of_all_modules.html`"
+"Please see the following page: `https://docs.ansible.com/ansible/latest/collections/index_module.html`"
 
 "If you can't find the right module, writing one is pretty easy (it doesn't even have to be Python, it just needs to speak JSON)."
 
