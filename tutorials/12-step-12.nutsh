@@ -7,7 +7,7 @@ run(`cp -r /tutorials/files/step-12/* .`)
 
 "Now that our playbook is done, let's refactor everything! We'll replace our plays with roles." 
 
-"Roles are just a new way of organizing files but bring interesting features. I won't go into great lengths here, since they're listed in Ansible's documentation ( `http://docs.ansible.com/ansible/latest/playbooks.html` ), but my favorite is probably roles dependencies: role B can depend on another role A. Thus, when applying role B, role A will automatically be applied too."
+"Roles are just a new way of organizing files but bring interesting features. I won't go into great lengths here, since they're listed in Ansible's documentation ( `http://docs.ansible.com/ansible/latest/playbooks.html` ), but my favorite is probably role dependencies: role B can depend on another role A. Thus, when applying role B, role A will automatically be applied too."
 
 "`Roles structures`"
 
@@ -86,7 +86,7 @@ prompt {
 
 "The `meta` directory is where you can add dependencies, and it's really a neat feature. We'll see that later."
 
-"Note that roles sit in the `roles` directory, which is also cool since it will reduce top level ansible playbook clutter. But you can configure Ansible to use an alternate directory to store role (see roles_path variable in ansible.cfg: `http://docs.ansible.com/ansible/latest/intro_configuration.html#roles-path`). This way you can setup a 'central place' for all your roles, and use them in all your playbooks."
+"Note that roles sit in the `roles` directory, which is also cool since it will reduce top level ansible playbook clutter. But you can configure Ansible to use an alternate directory to store roles (see roles_path variable in ansible.cfg: `http://docs.ansible.com/ansible/latest/intro_configuration.html#roles-path`). This way you can setup a 'central place' for all your roles, and use them in all your playbooks."
 
 "Please press the \"`Enter`\" key to continue!"
 prompt {
@@ -166,7 +166,7 @@ prompt {
 
 "`Extracting the handler`"
 
-"I've extracted the handlers part into file `apache_handlers.yml`. Check its content:"
+"I've extracted the handlers part into the file `apache_handlers.yml`. Check its content:"
 
 "*cat apache_handlers.yml*"
 
@@ -206,7 +206,7 @@ prompt {
     }
 } 
 
-"We no longer need `files` folder at root, delete it:"
+"We no longer need the `files` folder at root, delete it:"
 
 "*rm -rf files*"
 

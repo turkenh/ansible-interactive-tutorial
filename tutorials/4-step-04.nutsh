@@ -76,14 +76,14 @@ PLAY [web] ********************* \n
 "Ansible tells us it's running the play on hosts `web`. A play is a suite of ansible instructions related to a host. If we'd have another `-host: blah` line in our playbook, it would show up too (but after the first play has completed)."
 
 print ("\t
-GATHERING FACTS ********************* \n\t
+TASK [Gathering Facts] ********************* \n\t
 ok: [host1.example.org]\n\t
 \n")
 
 "Remember when we used the `setup` module? Before each play, ansible runs it on necessary hosts to gather facts. If this is not required because you don't need any info from the host, you can just add `gather_facts: no` below the host entry (same level as `tasks:`)."
 
 print ("\t
-TASK: [Installs apache web server] ********************* \n\t
+TASK [Installs apache web server] ********************* \n\t
 changed: [host1.example.org]\n\t
 \n")
 
