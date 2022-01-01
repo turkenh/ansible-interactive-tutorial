@@ -136,7 +136,7 @@ case $i in
     shift # past argument=value
     ;;
     *)
-    echo "Unknow argument ${i#*=}"
+    echo "Unknown argument ${i#*=}"
     exit 1
 esac
 done
